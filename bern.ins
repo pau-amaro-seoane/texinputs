@@ -1,0 +1,119 @@
+%
+%	Layout-Definitionen
+%	(Physikalisches Institut Uni Bern)
+%
+%	Diese Definitionen beziehen sich auf das offizielle
+%	Briefpapier (Formular 605.9/15.7 - 94.9)
+%
+%	Bruno Nyffeler, nyffeler@phim.unibe.ch, 1998
+%
+
+
+%
+% 	Schriftdefinitionen
+%	===================
+%
+\font\hveit=phvr7t at 8pt
+\font\hvten=phvr7t at 10pt
+\font\hvbnin=phvb7t at 9pt
+
+
+%
+%	Definition der Person (Verfasser)
+%	=================================
+%
+\def\person#1#2#3{\def\personinfo{#1}
+                  \def\personemail{#2}
+		  \def\persontel{#3}}
+\def\personinfo{}
+\def\personemail{}
+\def\persontel{}
+
+
+%
+%	Absender und Logo
+%	=================
+%
+\address{\hvbnin Universit\"at Bern\\[-1.5mm]
+         \hvbnin Physikalisches\\[-1.5mm]
+         \hvbnin Institut\\[+0.6cm]
+         \hvten \personinfo\\[-1.5mm]
+         \hveit \personemail\\[+1.1cm]
+         \hveit Sidlerstrasse 5\\[-1.5mm]
+         \hveit CH-3012 Bern\\[-1.5mm]
+         \hveit Switzerland\\[-1.5mm]
+         \hveit Phone \persontel\\[-1.5mm]
+         \hveit Faxe \hspace{1.3mm} +41 (31) 631-4405\\[-9mm]
+
+         \begin{picture}(0,0)
+             \put(\logo@hpos,\logo@vpos){\includegraphics[width=120mm]{bear.eps}}
+             \put(\bigrule@hpos,\bigrule@vpos){\rule{16mm}{1.8mm}}
+         \end{picture}
+        }
+
+
+%
+%	Angaben ueber Tel und Fax (obligatorisch)
+%	=========================================
+%
+\notelephone\nofax
+
+
+%
+%	Positionierungen
+%	================
+%	(Balken, Logo, Adresse des Absenders und Empfaengers, Ort und Datum)
+%
+\renewcommand{\rule@length}{6.2}
+\renewcommand{\rule@hpos}{-25}
+\renewcommand{\rule@vpos}{-31}
+\renewcommand{\fromaddress@let@hpos}{2}
+\renewcommand{\fromaddress@let@vpos}{86}
+\renewcommand{\toaddress@let@hpos}{101}
+\renewcommand{\toaddress@let@vpos}{46}
+\renewcommand{\fromlieu@let@hpos}{101}
+\renewcommand{\fromlieu@let@vpos}{0}
+\newcommand{\logo@hpos}{-21}
+\newcommand{\logo@vpos}{-97}
+\newcommand{\bigrule@hpos}{-21}
+\newcommand{\bigrule@vpos}{-90}
+
+
+%
+%	Einruecken und vertikale Abstaende
+%	==================================
+%
+\marge{+2mm}
+\openingspace=+0mm
+\ssigindent=+99mm
+
+
+%
+%	Neudefinitionen fuer bebrief.cls
+%	==============================
+%	(PS, Cc, Encl linksbuendig)
+%
+\def\ps#1#2{\penalty100\relax
+  \if@letter
+    \vskip\csname letter\the\c@lettre\endcsname mm
+  \fi
+  \l@@info{Post-scriptum defini}%
+  \noindent\t{\hspace{5.2mm}#1}{#2}\vfill\penalty-100\relax}%
+\def\cc#1{\penalty100\relax
+  \if@letter
+    \vskip\csname letter\the\c@lettre\endcsname mm
+  \fi
+  \l@@info{Copies declarees}%
+  \noindent\t{\hspace{5.2mm}\ccname}{#1}\vfill\penalty-100\relax}%
+\def\encl#1{\penalty100\relax
+  \if@letter
+    \vskip\csname letter\the\c@lettre\endcsname mm
+  \fi
+  \l@@info{Annexes declarees}%
+  \noindent\t{\hspace{5.2mm}\enclname}{#1}\vfill\penalty-100\relax}%
+\def\mencl{\penalty100\relax
+  \if@letter
+    \vskip\csname letter\the\c@lettre\endcsname mm
+  \fi
+  \l@@info{Annexes mentionnees}%
+  \noindent\t{\hspace{5.2mm}\mentionname}{~}\vfill\penalty-100\relax}%
